@@ -37,7 +37,7 @@ Raspotify should work on _any_ Pi but it has been tested on,
 
 * Raspberry Pi (v1) model B
 * Raspberry Pi 2 model B
-* Raspberry Pi 3 model B
+* Raspberry Pi 3 model B and B+
 
 ### Easy Installation
 
@@ -161,6 +161,29 @@ There should be a built Debian package (a `.deb` file) in your project directory
 > *My volume on Spotify is 100% and it's still too quiet!*
 
 Have you tried turning the volume up using the command `alsamixer`?
+
+> *My Raspberry Pi does not use my USB sound card!*
+
+Try to replace the following in the file `/usr/share/alsa/alsa.conf`:
+
+```
+defaults.ctl.card 0
+defaults.pcm.card 0
+```
+with
+```
+defaults.ctl.card 1
+defaults.pcm.card 1
+```
+> *The audio output buzzes a few seconds after audio stops!*
+
+This is likely to be ALSA's Dynamic Audio Power Management (DAPM) shutting down
+the sound module of your device to save power. If you want to disable this feature,
+create a file called `snd_soc_core.conf` in `/etc/modprobe.d` with this line in:
+```
+options snd_soc_core pmdown_time -1
+```
+Once you reboot and play some sound, the issue should be gone.
 
 > *Other issues*
 
