@@ -1,3 +1,5 @@
+THIS IS NOT YET READY FOR USE !!!!
+
 # Spotify Connect for Debian (SpoCon)
 
 Install the Spotify Connect client on your Raspberry Pi,
@@ -28,7 +30,7 @@ Raspotify works on a Raspberry Pi running [Raspbian](https://www.raspberrypi.org
 You'll need a [Spotify Premium](https://www.spotify.com/premium/) account in order
 to use Connect.
 
-Raspotify should work on _any_ Pi but it has been tested on,
+SpoCon should work on _any_ Pi but it has been tested on,
 
 * Raspberry Pi (v1) model B
 * Raspberry Pi 2 model B
@@ -60,15 +62,15 @@ echo 'deb https://spocon.github.io/spocon spocon main' | sudo tee /etc/apt/sourc
 
 # Install package
 sudo apt-get update
-sudo apt-get -y install raspotify
+sudo apt-get -y install spocon
 ```
 
 Or you can just download the latest .deb package and install it manually from
-here ([`raspotify-releases`](https://github.com/spocon/spocon/releases)),
+here ([`spocon-releases`](https://github.com/spocon/spocon/releases)),
 
 ```bash
 wget https://spcon.github.io/spocon/spocon-{{version}}.deb
-sudo dpkg -i raspotify-{{version}}.deb
+sudo dpkg -i spocon-{{version}}.deb
 ```
 
 ### Uninstalling
@@ -79,7 +81,7 @@ To uninstall, remove the package,
 sudo apt-get remove -y spocon
 ```
 
-To completely remove Raspotify and its Debian repository from your system try,
+To completely remove spocon and its Debian repository from your system try,
 ```bash
 sudo apt-get remove -y --purge spocon
 sudo rm -v /etc/apt/sources.list.d/spocon.list
@@ -88,8 +90,8 @@ sudo rm -v /etc/apt/sources.list.d/spocon.list
 ## Configuration
 
 
-Raspotify should work out of the box and should be discoverable by Spotify Connect on
-your local network, however you can configure it by editing `/opt/raspotify/conf.properties`
+SpoCon should work out of the box and should be discoverable by Spotify Connect on
+your local network, however you can configure it by editing `/opt/spocon/conf.properties`
 which passes arguments to [librespot-java](https://github.com/librespot-org/librespot-java).
 
 ```
@@ -140,7 +142,7 @@ player.episodes.useCdn=true
 player.enableLoadingState=true
 ```
 
-After editing restart the daemon by running: `sudo systemctl restart raspotify`
+After editing restart the daemon by running: `sudo systemctl restart spocon`
 
 ## Building the Package Yourself
 
@@ -155,7 +157,7 @@ cd Vagrant
 vagrant up # start your environment
 vagrant ssh # login into you environment
 cd workspace
-ansible-playbook Ansible/start.yml -e librespot_version=0.5.2 -e raspotify_version=0.14.0
+ansible-playbook Ansible/start.yml -e librespot_version=0.5.2 -e spocon_version=0.14.0
 ```
 
 There should be a built Debian package (a `.deb` file) in your project directory /package.
