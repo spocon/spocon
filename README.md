@@ -1,19 +1,15 @@
-# Raspotify
-
-_**Spotify Connect client for the Raspberry Pi that Just Works™.**_
-
+# Spotify Connect for Debian (SpoCon)
 
 Install the Spotify Connect client on your Raspberry Pi,
 
 ```bash
-curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+curl -sL https://spocon.github.io/spocon/install.sh | sh
 ```
 
 ## Introduction
 
-Raspotify is a [Spotify Connect](https://www.spotify.com/connect/) client for
-[Raspbian](https://www.raspberrypi.org/downloads/raspbian/) on the Raspberry Pi
-that Just Works™. Raspotify is a
+SpoCon is a [Spotify Connect](https://www.spotify.com/connect/) client for
+[Raspbian](https://www.raspberrypi.org/downloads/raspbian/). SpoCon is a
 [Debian package and associated repository](https://en.wikipedia.org/wiki/Deb_\(file_format\))
 which thinly wraps the awesome
 [librespot-java](https://github.com/librespot-org/librespot-java) library by
@@ -22,8 +18,8 @@ all three revisions of the Pi, immediately after installation.
 
 ## Download Latest Version
 
-Head on over to the [releases](https://github.com/dtcooper/raspotify/releases/latest)
-page to download themost recent version and install the Debian package. Or follow
+Head on over to the [releases](https://github.com/spocon/spocon/releases/latest)
+page to download the most recent version and install the Debian package. Or follow
 the [directions below](#easy-installation).
 
 ### Requirements
@@ -44,7 +40,7 @@ This command downloads and installs the Debian package and adds its apt reposito
 which ensures you'll always be up to date with upstream changes.
 
 ```bash
-curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+curl -sL https://spocon.github.io/spocon/install.sh | sh
 ```
 
 That's it! Plug a speaker into your Pi on your local network, select the device
@@ -59,8 +55,8 @@ Essentially, here's what the easy installer does,
 sudo apt-get -y install curl apt-transport-https
 
 # Add repo and its GPG key
-curl -sSL https://dtcooper.github.io/raspotify/key.asc | sudo apt-key add -v -
-echo 'deb https://dtcooper.github.io/raspotify raspotify main' | sudo tee /etc/apt/sources.list.d/raspotify.list
+curl -sSL https://spocon.github.io/spocon/key.asc | sudo apt-key add -v -
+echo 'deb https://spocon.github.io/spocon spocon main' | sudo tee /etc/apt/sources.list.d/spocon.list
 
 # Install package
 sudo apt-get update
@@ -68,11 +64,11 @@ sudo apt-get -y install raspotify
 ```
 
 Or you can just download the latest .deb package and install it manually from
-here ([`raspotify-latest.deb`](https://dtcooper.github.io/raspotify/raspotify-latest.deb)),
+here ([`raspotify-releases`](https://github.com/spocon/spocon/releases)),
 
 ```bash
-wget https://dtcooper.github.io/raspotify/raspotify-latest.deb
-sudo dpkg -i raspotify-latest.deb
+wget https://spcon.github.io/spocon/spocon-{{version}}.deb
+sudo dpkg -i raspotify-{{version}}.deb
 ```
 
 ### Uninstalling
@@ -80,13 +76,13 @@ sudo dpkg -i raspotify-latest.deb
 To uninstall, remove the package,
 
 ```bash
-sudo apt-get remove -y raspotify
+sudo apt-get remove -y spocon
 ```
 
 To completely remove Raspotify and its Debian repository from your system try,
 ```bash
-sudo apt-get remove -y --purge raspotify
-sudo rm -v /etc/apt/sources.list.d/raspotify.list
+sudo apt-get remove -y --purge spocon
+sudo rm -v /etc/apt/sources.list.d/spocon.list
 ```
 
 ## Configuration
@@ -164,15 +160,6 @@ ansible-playbook Ansible/start.yml -e librespot_version=0.5.2 -e raspotify_versi
 
 There should be a built Debian package (a `.deb` file) in your project directory /package.
 
-> #### Note About Raspotify's APT Repository
->
-> You _can_ actually use GitHub to host an APT repository for Raspotify as I
-> have done, but that's very much out of the scope of this Readme. Have a look
-> at the [Makefile](Makefile)'s `apt-repo` and `apt-deploy` directives, and its
-> `APT_GPG_KEY` and `APT_GH_PAGES_REPO` variables. You'll _at least_ need this
-> repository cloned on GitHub, GitHub Pages enabled for the `gh-pages` branch,
-> and a [GPG](https://www.gnupg.org/) key. I **can't** and **won't** support any
-> users trying to do this at this time, but _have fun and good luck!_
 
 ## Troubleshooting
 
@@ -209,19 +196,8 @@ File an issue and if we get it sorted, I'll add to this list.
 
 ## Donations
 
-If you're so inclined, Bitcoin my address is `1PoDcAStyJoB7zZz2mny4KjtjiEu8S44ns`. :)
-
 (I'd rather you donate to [librespot-java](https://github.com/librespot-org/librespot-java)
 instead, but there's no public address for those folks.)
-
-## Final Note
-
-_...and remember kids, have fun!_
-
-## License
-
-This project is licensed under the MIT License - see the [`LICENSE`](LICENSE)
-file for details.
 
 ## Acknowledgments
 
