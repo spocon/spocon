@@ -202,6 +202,6 @@ instead, but there's no public address for those folks.)
 ## Acknowledgments
 
 Special thanks to [Paul Lietar](https://github.com/plietar) for
-[librespot](https://github.com/librespot-org/librespot) (and its additional authors),
-which Raspotify packages. Without [librespot](https://github.com/librespot-org/librespot),
-Raspotify would simply not exist.
+[librespot](https://github.com/librespot-org/librespot) (and its additional authors) and David Cooper [dtcooper](https://github.com/dtcooper)
+
+
