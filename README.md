@@ -18,7 +18,7 @@ all three revisions of the Pi, immediately after installation.
 
 ## Download Latest Version
 
-### SpoCon releases for Ubuntu and Debian on launchpad
+### SpoCon releases for Ubuntu [Launchpad](https://launchpad.net/~spocon/+archive/ubuntu/spocon)
 ```
 sudo add-apt-repository ppa:spocon/spocon
 sudo apt-get update
