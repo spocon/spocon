@@ -2,8 +2,7 @@
 
 ## Introduction
 
-SpoCon is a [Spotify Connect](https://www.spotify.com/connect/) client for
-[Raspbian](https://www.raspberrypi.org/downloads/raspbian/). SpoCon is a
+SpoCon is a [Spotify Connect](https://www.spotify.com/connect/) for
 [Debian package and associated repository](https://en.wikipedia.org/wiki/Deb_\(file_format\))
 which thinly wraps the awesome
 [librespot-java](https://github.com/librespot-org/librespot-java) library by
