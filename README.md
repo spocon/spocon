@@ -1,5 +1,4 @@
-# Spotify Connect for Ubuntu, Debian and Raspbian (SpoCon)
-
+# [Spotify Connect for Ubuntu, Debian and Raspbian (SpoCon)](https://spocon.github.io/spocon)
 ## Introduction
 
 SpoCon is a [Spotify Connect](https://www.spotify.com/connect/) for
