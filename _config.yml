@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+title: SpoCon ( Spotify Connect Client )
+description: A installation package for the popular librespot library
+google_analytics: UA-144000346-1
