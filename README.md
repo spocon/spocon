@@ -1,10 +1,4 @@
-# Spotify Connect for Debian (SpoCon)
-
-Install the Spotify Connect client on your Raspberry Pi,
-
-```bash
-curl -sL https://spocon.github.io/spocon/install.sh | sh
-```
+# Spotify Connect for Ubuntu, Debian and Raspbian (SpoCon)
 
 ## Introduction
 
@@ -18,16 +12,21 @@ all three revisions of the Pi, immediately after installation.
 
 ## Download Latest Version
 
-### SpoCon releases for Ubuntu on [Launchpad](https://launchpad.net/~spocon/+archive/ubuntu/spocon)
+### SpoCon releases for Ubuntu and Debian on [Launchpad](https://launchpad.net/~spocon/+archive/ubuntu/spocon)
 ```
 sudo add-apt-repository ppa:spocon/spocon
-sudo apt-get update
+sudo apt-get -y update
+sudo apt-get install spocon 
 ```
 
 ### Raspbian releases 
-Currently no repository solution but you can download the armhf package:
 
-[Launchpad - SpoCon repository](https://launchpad.net/~spocon/+archive/ubuntu/spocon)
+```
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -r universe ppa:spocon/spocon
+sudo apt-get update
+sudo apt-get install spocon
+```
 
 ### Requirements
 
@@ -41,43 +40,6 @@ SpoCon should work on _any_ Pi but it has been tested on,
 * Raspberry Pi 2 model B
 * Raspberry Pi 3 model B and B+
 
-### Easy Installation
-
-This command downloads and installs the Debian package and adds its apt repository,
-which ensures you'll always be up to date with upstream changes.
-
-```bash
-curl -sL https://spocon.github.io/spocon/install.sh | sh
-```
-
-That's it! Plug a speaker into your Pi on your local network, select the device
-in Spotify et voilà!
-
-### Hard installation
-
-Essentially, here's what the easy installer does,
-
-```bash
-# Install curl and https apt transport
-sudo apt-get -y install curl apt-transport-https
-
-# Add repo and its GPG key
-curl -sSL https://spocon.github.io/spocon/key.asc | sudo apt-key add -v -
-echo 'deb https://spocon.github.io/spocon spocon main' | sudo tee /etc/apt/sources.list.d/spocon.list
-
-# Install package
-sudo apt-get update
-sudo apt-get -y install spocon
-```
-
-Or you can just download the latest .deb package and install it manually from
-here ([`spocon-releases`](https://github.com/spocon/spocon/releases)),
-
-```bash
-wget https://spcon.github.io/spocon/spocon-{{version}}.deb
-sudo dpkg -i spocon-{{version}}.deb
-```
-
 ### Uninstalling
 
 To uninstall, remove the package,
@@ -89,7 +51,6 @@ sudo apt-get remove -y spocon
 To completely remove spocon and its Debian repository from your system try,
 ```bash
 sudo apt-get remove -y --purge spocon
-sudo rm -v /etc/apt/sources.list.d/spocon.list
 ```
 
 ## Configuration
