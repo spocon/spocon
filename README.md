@@ -18,9 +18,16 @@ all three revisions of the Pi, immediately after installation.
 
 ## Download Latest Version
 
-Head on over to the [releases](https://github.com/spocon/spocon/releases/latest)
-page to download the most recent version and install the Debian package. Or follow
-the [directions below](#easy-installation).
+### SpoCon releases for Ubuntu and Debian on launchpad
+```
+sudo add-apt-repository ppa:spocon/spocon
+sudo apt-get update
+```
+
+### Raspbian releases 
+Currently no repository solution but you can download the armhf package:
+
+[Launchpad - SpoCon repository](https://launchpad.net/~spocon/+archive/ubuntu/spocon)
 
 ### Requirements
 
@@ -202,6 +209,6 @@ instead, but there's no public address for those folks.)
 ## Acknowledgments
 
 Special thanks to [Paul Lietar](https://github.com/plietar) for
-[librespot](https://github.com/librespot-org/librespot) (and its additional authors) and David Cooper [dtcooper](https://github.com/dtcooper)
+[librespot](https://github.com/librespot-org/librespot) (and its additional authors) and [David Cooper](https://github.com/dtcooper)
 
 
