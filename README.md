@@ -1,5 +1,3 @@
-THIS IS NOT YET READY FOR USE !!!!
-
 # Spotify Connect for Debian (SpoCon)
 
 Install the Spotify Connect client on your Raspberry Pi,
