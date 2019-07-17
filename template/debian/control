@@ -1,0 +1,13 @@
+Source: spocon
+Section: java
+Priority: optional
+Maintainer: Thorsten H <spocondeb@gmail.com>
+Build-Depends: init-system-helpers, debhelper (>= 10)
+Standards-Version: 4.1.2
+Homepage: https://github.com/spocon
+
+Package: spocon
+Architecture: any
+Depends: libasound2, adduser, openjdk-11-jre
+Description: Spotify Connect for linux with librespot-java
+ package installer for the project librespot-java

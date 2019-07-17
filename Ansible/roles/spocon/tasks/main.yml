@@ -1,0 +1,83 @@
+---
+
+- set_fact:
+    tmpFolder: /tmp/spocon
+
+- name: create tmp folder {{ tmpFolder }}
+  file:
+    path: "{{ tmpFolder }}"
+    state: directory
+
+- name: Removing old build folder
+  file:
+    path: "{{ tmpFolder }}/build"
+    state: absent
+
+- name: Create build folder
+  file:
+    path: "{{ tmpFolder }}{{ item }}"
+    state: directory
+    recurse: true
+  with_items:
+    - "/build/spocon_{{ spocon_version }}"
+
+- name: Building deb package {{ tmpFolder }}/build/spocon_{{ spocon_version }}
+  shell: "dch -v {{ spocon_version }} \"Update to {{ spocon_version }}, for more information please see https://github.com/spocon/spocon \" -M -D bionic"
+  args:
+    chdir: "{{ workspace }}/template"
+
+- name: Copy deb folder to {{ workspace }}/build
+  copy:
+    src: "{{ workspace }}/template/"
+    dest: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}"
+
+
+
+- name: Put service in package
+  template:
+    src: spocon.service
+    dest: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}/debian/spocon.service"
+
+
+- name: Downloading librespot-java {{ librespot_version }}
+  get_url:
+    url: "https://github.com/librespot-org/librespot-java/releases/download/v{{ librespot_version }}/librespot-core-jar-with-dependencies.jar"
+    dest: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}/opt/spocon/librespot-java-core-v{{ librespot_version }}.jar"
+
+- name: Fixing permissions for DEBIAN folder
+  file:
+     path: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}/debian"
+     mode: 0755
+     recurse: true
+
+- name: Fixing permissions for DEBIAN folder install
+  shell: "chmod -x {{ tmpFolder }}/build/spocon_{{ spocon_version }}/debian/*.install"
+
+- name: Fixing permissions for DEBIAN folder rules
+  shell: "chmod +x {{ tmpFolder }}/build/spocon_{{ spocon_version }}/debian/rules"
+
+- name: Building source files
+  shell: "debuild -S"
+  args:
+    chdir: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}"
+
+#- name: Case insensitive password string match
+##  expect:
+#    command: passwd username
+#    responses:
+#      (?i)password: "MySekretPa$$word"
+  # you don't want to show passwords in your logs
+#  no_log: true
+#- name: Building deb package {{ tmpFolder }}
+#  shell: "dpkg -b {{ tmpFolder }}/build"
+
+#- name: Rename deb package {{ tmpFolder }}
+#  shell: "dpkg-name {{ tmpFolder }}/build.deb -a"
+
+#- name: Remove build.deb package
+#  file:
+#     path: "{{ tmpFolder }}/build.deb"
+#     state: absent
+
+#- name: Move file to package folder
+#  shell: "mv {{ tmpFolder }}/*.deb /home/vagrant/workspace/package"

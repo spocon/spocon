@@ -7,4 +7,4 @@
     workspace: "{{ lookup('env','WORKSPACE') | default('..', true) }}"
 
   roles:
-    - raspotify
+    - spocon

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+chown -R spocon:spocon /opt/spocon
+
+if test -f "/opt/spocon/conf.usercustom"; then
+    mv /opt/spocon/conf.properties /opt/spocon/conf.example
+    mv /opt/spocon/conf.usercustom /opt/spocon/conf.properties
+fi
+
+
+deb-systemd-helper unmask spocon.service >/dev/null || true
+
+# was-enabled defaults to true, so new installations run enable.
+if deb-systemd-helper --quiet was-enabled spocon.service; then
+        # Enables the unit on first installation, creates new
+        # symlinks on upgrades if the unit file has changed.
+        deb-systemd-helper enable spocon.service >/dev/null || true
+else
+        # Update the statefile to add new symlinks (if any), which need to be
+        # cleaned up on purge. Also remove old symlinks.
+        deb-systemd-helper update-state spocon.service >/dev/null || true
+fi
+
+    if [ -d /run/systemd/system ]; then
+    systemctl --system daemon-reload >/dev/null || true
+    deb-systemd-invoke start spocon.service >/dev/null || true
+fi
+
+adduser spocon audio

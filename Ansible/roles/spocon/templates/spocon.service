@@ -1,19 +1,19 @@
 [Unit]
-Description=Raspotify
+Description=SpoCon
 Wants=network-online.target
 After=network.target network-online.target
 Requires=network-online.target
 
 [Service]
 Type=simple
-User=raspotify
-Group=raspotify
+User=spocon
+Group=spocon
 Restart=always
 RestartSec=10
 PermissionsStartOnly=true
-WorkingDirectory=/opt/raspotify
+WorkingDirectory=/opt/spocon
 ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 5; done;'
-ExecStart=/usr/bin/java -jar /opt/raspotify/librespot-java-core-v{{ librespot_version }}.jar
+ExecStart=/usr/bin/java -jar /opt/spocon/librespot-java-core-v{{ librespot_version }}.jar
 
 [Install]
 WantedBy=multi-user.target
