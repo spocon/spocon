@@ -20,13 +20,32 @@ sudo apt-get install spocon
 
 ### Raspbian releases 
 
-```
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -r universe ppa:spocon/spocon
-sudo apt-get update
-sudo apt-get install spocon
-```
+Luckily Launchpad is also supporting armhf versions , these are especially build for distributions like Raspberian 
 
+###Easy Installation
+
+This command downloads and installs the Debian package and adds its apt repository, which ensures you'll always be up to date with upstream changes.
+```
+curl -sL https://spocon.github.io/spocon/install.sh | sh
+```
+That's it! Plug a speaker into your Pi on your local network, select the device in Spotify et voilà!
+
+###Hard installation
+
+Essentially, here's what the easy installer does,
+```
+# Install curl and https apt transport
+sudo apt-get -y install curl apt-transport-https
+
+# Add repo and its GPG key
+curl -sSL https://spocon.github.io/spocon/key.asc | sudo apt-key add -v -
+## This downloads the armhf version for Raspbian Pi
+echo 'deb http://ppa.launchpad.net/spocon/spocon/ubuntu bionic main universe | sudo tee /etc/apt/sources.list.d/spocon.list
+
+# Install package
+sudo apt-get update
+sudo apt-get -y install spocon
+```
 ### Requirements
 
 You'll need a [Spotify Premium](https://www.spotify.com/premium/) account in order
