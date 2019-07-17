@@ -1,164 +1,144 @@
-# Raspotify
-
-_**Spotify Connect client for the Raspberry Pi that Just Works™.**_
-
-## tl;dr
-
-Install the Spotify Connect client on your Raspberry Pi,
-
-```bash
-curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
-```
+# Spotify Connect for Ubuntu, Debian and Raspbian (SpoCon)
 
 ## Introduction
 
-Raspotify is a [Spotify Connect](https://www.spotify.com/connect/) client for
-[Raspbian](https://www.raspberrypi.org/downloads/raspbian/) on the Raspberry Pi
-that Just Works™. Raspotify is a
+SpoCon is a [Spotify Connect](https://www.spotify.com/connect/) for
 [Debian package and associated repository](https://en.wikipedia.org/wiki/Deb_\(file_format\))
 which thinly wraps the awesome
-[librespot](https://github.com/librespot-org/librespot) library by
-[Paul Lietar](https://github.com/plietar) and others. It works out of the box on
+[librespot-java](https://github.com/librespot-org/librespot-java) library by
+[Luca Altomanigian](https://github.com/devgianlu) and others. It works out of the box on
 all three revisions of the Pi, immediately after installation.
 
 ## Download Latest Version
 
-Head on over to the [releases](https://github.com/dtcooper/raspotify/releases/latest)
-page to download themost recent version and install the Debian package. Or follow
-the [directions below](#easy-installation).
-
-### Requirements
-
-Raspotify works on a Raspberry Pi running [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).
-You'll need a [Spotify Premium](https://www.spotify.com/premium/) account in order
-to use Connect.
-
-Raspotify should work on _any_ Pi but it has been tested on,
-
-* Raspberry Pi (v1) model B
-* Raspberry Pi 2 model B
-* Raspberry Pi 3 model B and B+
-
-### Easy Installation
-
-This command downloads and installs the Debian package and adds its apt repository,
-which ensures you'll always be up to date with upstream changes.
-
-```bash
-curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
+### SpoCon releases for Ubuntu and Debian on [Launchpad](https://launchpad.net/~spocon/+archive/ubuntu/spocon)
+```
+sudo add-apt-repository ppa:spocon/spocon
+sudo apt-get -y update
+sudo apt-get install spocon 
 ```
 
-That's it! Plug a speaker into your Pi on your local network, select the device
-in Spotify et voilà!
+### Raspbian releases 
 
-### Hard installation
+Luckily Launchpad is also supporting armhf versions , these are especially build for distributions like Raspberian 
+
+###Easy Installation
+
+This command downloads and installs the Debian package and adds its apt repository, which ensures you'll always be up to date with upstream changes.
+```
+curl -sL https://spocon.github.io/spocon/install.sh | sh
+```
+That's it! Plug a speaker into your Pi on your local network, select the device in Spotify et voilà!
+
+###Hard installation
 
 Essentially, here's what the easy installer does,
-
-```bash
+```
 # Install curl and https apt transport
 sudo apt-get -y install curl apt-transport-https
 
 # Add repo and its GPG key
-curl -sSL https://dtcooper.github.io/raspotify/key.asc | sudo apt-key add -v -
-echo 'deb https://dtcooper.github.io/raspotify raspotify main' | sudo tee /etc/apt/sources.list.d/raspotify.list
+curl -sSL https://spocon.github.io/spocon/key.asc | sudo apt-key add -v -
+## This downloads the armhf version for Raspbian Pi
+echo 'deb http://ppa.launchpad.net/spocon/spocon/ubuntu bionic main universe | sudo tee /etc/apt/sources.list.d/spocon.list
 
 # Install package
 sudo apt-get update
-sudo apt-get -y install raspotify
+sudo apt-get -y install spocon
 ```
+### Requirements
 
-Or you can just download the latest .deb package and install it manually from
-here ([`raspotify-latest.deb`](https://dtcooper.github.io/raspotify/raspotify-latest.deb)),
-
-```bash
-wget https://dtcooper.github.io/raspotify/raspotify-latest.deb
-sudo dpkg -i raspotify-latest.deb
-```
+You'll need a [Spotify Premium](https://www.spotify.com/premium/) account in order
+to use Connect.
 
 ### Uninstalling
 
 To uninstall, remove the package,
 
 ```bash
-sudo apt-get remove -y raspotify
+sudo apt-get remove -y spocon
 ```
 
-To completely remove Raspotify and its Debian repository from your system try,
+To completely remove spocon and its Debian repository from your system try,
 ```bash
-sudo apt-get remove -y --purge raspotify
-sudo rm -v /etc/apt/sources.list.d/raspotify.list
+sudo apt-get remove -y --purge spocon
 ```
 
 ## Configuration
 
-Raspotify works out of the box and should be discoverable by Spotify Connect on
-your local network, however you can configure it by editing `/etc/default/raspotify`
-which passes arguments to [librespot](https://github.com/librespot-org/librespot).
+
+SpoCon should work out of the box and should be discoverable by Spotify Connect on
+your local network, however you can configure it by editing `/opt/spocon/conf.properties`
+which passes arguments to [librespot-java](https://github.com/librespot-org/librespot-java).
 
 ```
-# /etc/default/raspotify -- Arguments/configuration for librespot
-
-# Device name on Spotify Connect
-#DEVICE_NAME="raspotify"
-
-# Bitrate, one of 96 (low quality), 160 (default quality), or 320 (high quality)
-#BITRATE="160"
-
-# Additional command line arguments for librespot can be set below.
-# See `librespot -h` for more info. Make sure whatever arguments you specify
-# aren't already covered by other variables in this file. (See the daemon's
-# config at `/lib/systemd/system/raspotify.service` for more technical details.)
-#
-# To make your device visible on Spotify Connect across the Internet add your
-# username and password which can be set via "Set device password", on your
-# account settings, use `--username` and `--password`.
-#
-# To choose a different output device (ie a USB audio dongle or HDMI audio out),
-# use `--device` with something like `--device hw:0,1`. Your mileage may vary.
-#
-#OPTIONS="--username <USERNAME> --password <PASSWORD>"
-
-# Uncomment to use a cache for downloaded audio files. Cache is disabled by
-# default. It's best to leave this as-is if you want to use it, since
-# permissions are properly set on the directory `/var/cache/raspotify'.
-#CACHE_ARGS="--cache /var/cache/raspotify"
-
-# By default, the volume normalization is enabled, add alternative volume
-# arguments here if you'd like, but these should be fine.
-#VOLUME_ARGS="--enable-volume-normalisation --linear-volume --initial-volume=100"
-
-# Backend could be set to pipe here, but it's for very advanced use cases of
-# librespot, so you shouldn't need to change this under normal circumstances.
-#BACKEND_ARGS="--backend alsa"
+### Device name ###
+deviceName=librespot-java
+### Device type (Computer, Tablet, Smartphone, Speaker, TV, AVR, STB, AudioDongle, Unknown) ###
+deviceType=Computer
+### Authentication ###
+# Strategy (USER_PASS, ZEROCONF, BLOB, FACEBOOK)
+auth.strategy=ZEROCONF
+# Spotify username (BLOB, USER_PASS only)
+auth.username=
+# Spotify password (USER_PASS only)
+auth.password=
+# Spotify authentication blob (BLOB only)
+auth.blob=
+### Zeroconf ###
+# Listen on this port (`-1` for random)
+zeroconf.listenPort=-1
+# Listen on all interfaces (overrides `zeroconf.interfaces`)
+zeroconf.listenAll=true
+# Listen on these interfaces (comma separated list of names)
+zeroconf.interfaces=
+### Cache ###
+# Cache enabled
+cache.enabled=true
+### Preload ###
+# Preload enabled
+preload.enabled=true
+### Player ###
+# Autoplay similar songs when your music ends
+player.autoplayEnabled=true
+# Preferred audio quality (VORBIS_96, VORBIS_160, VORBIS_320)
+player.preferredAudioQuality=VORBIS_160
+# Normalisation pregain
+player.normalisationPregain=0
+# Initial volume (0-65536)
+player.initialVolume=65536
+# Log available mixers
+player.logAvailableMixers=true
+# Mixer/backend search keywords
+player.mixerSearchKeywords=
+# Use CDN to download tracks
+player.tracks.useCdn=true
+# Use CDN to download episodes
+player.episodes.useCdn=true
+# Enable loading state (useful for slow connections)
+player.enableLoadingState=true
 ```
 
-After editing restart the daemon by running: `sudo systemctl restart raspotify`
+After editing restart the daemon by running: `sudo systemctl restart spocon`
 
 ## Building the Package Yourself
 
-All that's required is [Docker](https://www.docker.com/) on a \*nix system with
-[git](https://git-scm.com/) and [Make](https://www.gnu.org/software/make/). It
-can be built on any amd64 platform that runs docker using Raspberry Pi's
-cross-compiler (tested on Ubuntu 16.04 LTS and macOS El Capitan).
+### Requirements
+
+- Vagrant installed ( https://www.vagrantup.com/ )
+- Virtualbox installed ( https://www.virtualbox.org/wiki/Downloads )
+
 
 ```bash
-git clone https://github.com/dtcooper/raspotify
-cd raspotify
-make
+cd Vagrant
+vagrant up # start your environment
+vagrant ssh # login into you environment
+cd workspace
+ansible-playbook Ansible/start.yml -e librespot_version=0.5.2 -e spocon_version=0.14.0
 ```
 
-There should be a built Debian package (a `.deb` file) in your project directory.
+There should be a built Debian package (a `.deb` file) in your project directory /package.
 
-> #### Note About Raspotify's APT Repository
->
-> You _can_ actually use GitHub to host an APT repository for Raspotify as I
-> have done, but that's very much out of the scope of this Readme. Have a look
-> at the [Makefile](Makefile)'s `apt-repo` and `apt-deploy` directives, and its
-> `APT_GPG_KEY` and `APT_GH_PAGES_REPO` variables. You'll _at least_ need this
-> repository cloned on GitHub, GitHub Pages enabled for the `gh-pages` branch,
-> and a [GPG](https://www.gnupg.org/) key. I **can't** and **won't** support any
-> users trying to do this at this time, but _have fun and good luck!_
 
 ## Troubleshooting
 
@@ -195,23 +175,12 @@ File an issue and if we get it sorted, I'll add to this list.
 
 ## Donations
 
-If you're so inclined, Bitcoin my address is `1PoDcAStyJoB7zZz2mny4KjtjiEu8S44ns`. :)
-
-(I'd rather you donate to [librespot](https://github.com/librespot-org/librespot)
+(I'd rather you donate to [librespot-java](https://github.com/librespot-org/librespot-java)
 instead, but there's no public address for those folks.)
-
-## Final Note
-
-_...and remember kids, have fun!_
-
-## License
-
-This project is licensed under the MIT License - see the [`LICENSE`](LICENSE)
-file for details.
 
 ## Acknowledgments
 
 Special thanks to [Paul Lietar](https://github.com/plietar) for
-[librespot](https://github.com/librespot-org/librespot) (and its additional authors),
-which Raspotify packages. Without [librespot](https://github.com/librespot-org/librespot),
-Raspotify would simply not exist.
+[librespot](https://github.com/librespot-org/librespot) (and its additional authors) and [David Cooper](https://github.com/dtcooper)
+
+
