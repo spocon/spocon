@@ -30,15 +30,8 @@ sudo apt-get install spocon
 
 ### Requirements
 
-Raspotify works on a Raspberry Pi running [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).
 You'll need a [Spotify Premium](https://www.spotify.com/premium/) account in order
 to use Connect.
-
-SpoCon should work on _any_ Pi but it has been tested on,
-
-* Raspberry Pi (v1) model B
-* Raspberry Pi 2 model B
-* Raspberry Pi 3 model B and B+
 
 ### Uninstalling
 
