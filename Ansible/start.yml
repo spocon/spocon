@@ -5,6 +5,7 @@
 
   vars:
     workspace: "{{ lookup('env','WORKSPACE') | default('..', true) }}"
+    upload: "{{ lookup('env','UPLOAD') | default('false', true) }}"
 
   roles:
     - spocon

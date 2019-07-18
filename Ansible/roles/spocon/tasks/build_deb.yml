@@ -1,0 +1,13 @@
+
+- name: Building source files
+  shell: "debuild -uc -us"
+  args:
+    chdir: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}"
+
+- name: Build package folder
+  file:
+     path: "/home/vagrant/workspace/package"
+     state: directory
+
+- name: Copy deb file to package folder
+  shell: "mv {{ tmpFolder }}/build/*.deb /home/vagrant/workspace/package"

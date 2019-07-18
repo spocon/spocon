@@ -1,0 +1,15 @@
+---
+
+- name: Creating InRelease files
+  shell: "apt-ftparchive release . > Release & gpg --clearsign -o InRelease Release & gpg -abs -o Release.gpg Release"
+  args:
+    chdir: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}"
+
+- name: Building source files
+  shell: "debuild -S"
+  args:
+    chdir: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}"
+
+- debug: msg="Upload with => sudo dput ppa:spocon/spocon {{ tmpFolder }}/build/spocon_{{ spocon_version }}_source.changes"
+
+

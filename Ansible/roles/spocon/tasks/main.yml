@@ -56,28 +56,10 @@
 - name: Fixing permissions for DEBIAN folder rules
   shell: "chmod +x {{ tmpFolder }}/build/spocon_{{ spocon_version }}/debian/rules"
 
-- name: Building source files
-  shell: "debuild -S"
-  args:
-    chdir: "{{ tmpFolder }}/build/spocon_{{ spocon_version }}"
+- name: Build deb package local
+  import_tasks: build_deb.yml
+  when: upload == "false"
 
-#- name: Case insensitive password string match
-##  expect:
-#    command: passwd username
-#    responses:
-#      (?i)password: "MySekretPa$$word"
-  # you don't want to show passwords in your logs
-#  no_log: true
-#- name: Building deb package {{ tmpFolder }}
-#  shell: "dpkg -b {{ tmpFolder }}/build"
-
-#- name: Rename deb package {{ tmpFolder }}
-#  shell: "dpkg-name {{ tmpFolder }}/build.deb -a"
-
-#- name: Remove build.deb package
-#  file:
-#     path: "{{ tmpFolder }}/build.deb"
-#     state: absent
-
-#- name: Move file to package folder
-#  shell: "mv {{ tmpFolder }}/*.deb /home/vagrant/workspace/package"
+- name: Build source for upload
+  import_tasks: build_source.yml
+  when: upload == "true"
