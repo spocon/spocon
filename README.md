@@ -6,7 +6,7 @@ SpoCon is a [Spotify Connect](https://www.spotify.com/connect/) for
 [Debian package and associated repository](https://en.wikipedia.org/wiki/Deb_\(file_format\))
 which thinly wraps the awesome
 [librespot-java](https://github.com/librespot-org/librespot-java) library by
-[Luca Altomanigian](https://github.com/devgianlu) and others. It works out of the box on
+[Gianluca Altomani](https://github.com/devgianlu) and others. It works out of the box on
 all three revisions of the Pi, immediately after installation.
 
 ## Download Latest Version
