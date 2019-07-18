@@ -21,7 +21,7 @@ sudo apt-get install spocon
 
 Luckily Launchpad is also supporting armhf versions , these are especially build for distributions like Raspberian 
 
-###Easy Installation
+### Easy Installation
 
 This command downloads and installs the Debian package and adds its apt repository, which ensures you'll always be up to date with upstream changes.
 ```
@@ -29,7 +29,7 @@ curl -sL https://spocon.github.io/spocon/install.sh | sh
 ```
 That's it! Plug a speaker into your Pi on your local network, select the device in Spotify et voilà!
 
-###Hard installation
+### Hard installation
 
 Essentially, here's what the easy installer does,
 ```
@@ -67,55 +67,46 @@ sudo apt-get remove -y --purge spocon
 
 
 SpoCon should work out of the box and should be discoverable by Spotify Connect on
-your local network, however you can configure it by editing `/opt/spocon/conf.properties`
+your local network, however you can configure it by editing `/opt/spocon/config.toml`
 which passes arguments to [librespot-java](https://github.com/librespot-org/librespot-java).
 
-```
-### Device name ###
-deviceName=librespot-java
-### Device type (Computer, Tablet, Smartphone, Speaker, TV, AVR, STB, AudioDongle, Unknown) ###
-deviceType=Computer
-### Authentication ###
-# Strategy (USER_PASS, ZEROCONF, BLOB, FACEBOOK)
-auth.strategy=ZEROCONF
-# Spotify username (BLOB, USER_PASS only)
-auth.username=
-# Spotify password (USER_PASS only)
-auth.password=
-# Spotify authentication blob (BLOB only)
-auth.blob=
-### Zeroconf ###
-# Listen on this port (`-1` for random)
-zeroconf.listenPort=-1
-# Listen on all interfaces (overrides `zeroconf.interfaces`)
-zeroconf.listenAll=true
-# Listen on these interfaces (comma separated list of names)
-zeroconf.interfaces=
-### Cache ###
-# Cache enabled
-cache.enabled=true
-### Preload ###
-# Preload enabled
-preload.enabled=true
-### Player ###
-# Autoplay similar songs when your music ends
-player.autoplayEnabled=true
-# Preferred audio quality (VORBIS_96, VORBIS_160, VORBIS_320)
-player.preferredAudioQuality=VORBIS_160
-# Normalisation pregain
-player.normalisationPregain=0
-# Initial volume (0-65536)
-player.initialVolume=65536
-# Log available mixers
-player.logAvailableMixers=true
-# Mixer/backend search keywords
-player.mixerSearchKeywords=
-# Use CDN to download tracks
-player.tracks.useCdn=true
-# Use CDN to download episodes
-player.episodes.useCdn=true
-# Enable loading state (useful for slow connections)
-player.enableLoadingState=true
+```toml
+deviceName = "librespot-java" ### Device name ###
+deviceType = "Computer" ### Device type (Computer, Tablet, Smartphone, Speaker, TV, AVR, STB, AudioDongle, Unknown) ###
+
+[auth] ### Authentication ###
+strategy = "ZEROCONF" # Strategy (USER_PASS, ZEROCONF, BLOB, FACEBOOK)
+username = "" # Spotify username (BLOB, USER_PASS only)
+password = "" # Spotify password (USER_PASS only)
+blob = "" # Spotify authentication blob (BLOB only)
+
+[zeroconf] ### Zeroconf ###
+listenPort = -1 # Listen on this port (`-1` for random)
+listenAll = true # Listen on all interfaces (overrides `zeroconf.interfaces`)
+interfaces = "" # Listen on these interfaces (comma separated list of names)
+
+[cache] ### Cache ###
+enabled = true # Cache enabled
+dir = "./cache/"
+doCleanUp = true
+
+[preload] ### Preload ###
+enabled = true # Preload enabled
+
+[player] ### Player ###
+autoplayEnabled = true # Autoplay similar songs when your music ends
+preferredAudioQuality = "VORBIS_160" # Preferred audio quality (VORBIS_96, VORBIS_160, VORBIS_320)
+normalisationPregain = 0 # Normalisation pregain
+initialVolume = 65536 # Initial volume (0-65536)
+logAvailableMixers = true # Log available mixers
+mixerSearchKeywords = "" # Mixer/backend search keywords
+enableLoadingState = true # Enable loading state (useful for slow connections)
+
+[player.tracks]
+useCdn = true # Use CDN to download tracks
+
+[player.episodes]
+useCdn = true # Use CDN to download episodes
 ```
 
 After editing restart the daemon by running: `sudo systemctl restart spocon`

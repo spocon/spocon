@@ -12,7 +12,7 @@ Restart=always
 RestartSec=10
 PermissionsStartOnly=true
 WorkingDirectory=/opt/spocon
-ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 5; done;'
+ExecStartPre=/bin/sh -c 'until ping -c1 spotify.com; do sleep 5; done;'
 ExecStart=/usr/bin/java -jar /opt/spocon/librespot-java-core-v{{ librespot_version }}.jar
 
 [Install]
