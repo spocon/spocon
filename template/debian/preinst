@@ -2,8 +2,8 @@
 
 set -e
 
-if test -f "/opt/spocon/conf.properties"; then
-    mv /opt/spocon/conf.properties /opt/spocon/conf.usercustom
+if test -f "/opt/spocon/config.toml"; then
+    mv /opt/spocon/config.toml /opt/spocon/conf.usercustom
 fi
 
 if ! getent group spocon >/dev/null 2>&1; then

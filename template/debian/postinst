@@ -4,9 +4,9 @@ set -e
 
 chown -R spocon:spocon /opt/spocon
 
-if test -f "/opt/spocon/conf.usercustom"; then
-    mv /opt/spocon/conf.properties /opt/spocon/conf.example
-    mv /opt/spocon/conf.usercustom /opt/spocon/conf.properties
+if test -f "/opt/spocon/config.usercustom"; then
+    mv /opt/spocon/config.toml /opt/spocon/config.example
+    mv /opt/spocon/config.usercustom /opt/spocon/config.toml
 fi
 
 

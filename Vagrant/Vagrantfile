@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "spocon" do |system|
         system.vm.network "private_network", ip: "10.0.0.11"
         system.vm.network "forwarded_port", guest: 22, host: 5555
-        system.vm.box = "ubuntu/disco64"
+        system.vm.box = "ubuntu/bionic64"
 
         system.vm.hostname = "spocon"
            system.vm.provider :virtualbox do |vb|
@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
              vb.gui = false
              vb.memory = 4096
              vb.cpus = 2
-             vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+
            end
         end
         config.vm.synced_folder "../", "/home/vagrant/workspace", type: "virtualbox"
