@@ -12,4 +12,5 @@ fi
 
 if ! id spocon >/dev/null 2>&1; then
     adduser --system --disabled-password --disabled-login --ingroup spocon spocon
+    adduser spocon audio
 fi

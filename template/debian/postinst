@@ -28,4 +28,4 @@ fi
     deb-systemd-invoke start spocon.service >/dev/null || true
 fi
 
-adduser spocon audio
+

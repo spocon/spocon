@@ -56,6 +56,9 @@
 - name: Fixing permissions for DEBIAN folder rules
   shell: "chmod +x {{ tmpFolder }}/build/spocon_{{ spocon_version }}/debian/rules"
 
+- name: Making sure that config.toml is unix lf
+  shell: "dos2unix {{ tmpFolder }}/build/spocon_{{ spocon_version }}/opt/spocon/config.toml"
+
 - name: Build deb package local
   import_tasks: build_deb.yml
   when: upload == "false"
