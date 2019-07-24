@@ -5,6 +5,7 @@ sudo apt-get -y install curl apt-transport-https
 
 # Add repo and its GPG key
 curl -sSL https://spocon.github.io/spocon/key.asc | sudo apt-key add -v -
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7DBE8BF06EA39B78
 ## This downloads the armhf version for Raspbian Pi
 echo 'deb http://ppa.launchpad.net/spocon/spocon/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/spocon.list
 
