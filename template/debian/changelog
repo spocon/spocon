@@ -5,68 +5,19 @@ spocon (1.0.0) bionic; urgency=medium
 
  -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:55:23 +0000
 
-spocon (1.0.0) bionic; urgency=medium
+spocon (0.16.12) bionic; urgency=medium
 
-  * Update to 1.0.0, for more information please see
+  * Update to 0.16.12, for more information please see
     https://github.com/spocon/spocon
 
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:52:05 +0000
+ -- Thorsten H <spocondeb@gmail.com>  Wed, 24 Jul 2019 21:57:56 +0000
 
-spocon (1.0.0) bionic; urgency=medium
+spocon (0.16.11) bionic; urgency=medium
 
-  * Update to 1.0.0, for more information please see
+  * Update to 0.16.11, for more information please see
     https://github.com/spocon/spocon
 
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:50:06 +0000
-
-spocon (1.0.0) bionic; urgency=medium
-
-  * Update to 1.0.0, for more information please see
-    https://github.com/spocon/spocon
-
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:47:32 +0000
-
-spocon (1.0.0) bionic; urgency=medium
-
-  * Update to 1.0.0, for more information please see
-    https://github.com/spocon/spocon
-
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:26:15 +0000
-
-spocon (1.0.0) bionic; urgency=medium
-
-  * Update to 1.0.0, for more information please see
-    https://github.com/spocon/spocon
-
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:22:19 +0000
-
-spocon (1.0.0) bionic; urgency=medium
-
-  * Update to 1.0.0, for more information please see
-    https://github.com/spocon/spocon
-
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:14:26 +0000
-
-spocon (1.0.0) bionic; urgency=medium
-
-  * Update to 1.0.0, for more information please see
-    https://github.com/spocon/spocon
-
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:04:02 +0000
-
-spocon (1.0.0) bionic; urgency=medium
-
-  * Update to 1.0.0, for more information please see
-    https://github.com/spocon/spocon
-
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:01:47 +0000
-
-spocon (1.0.0) bionic; urgency=medium
-
-  * Update to 1.0.0, for more information please see
-    https://github.com/spocon/spocon
-
- -- Thorsten H <spocondeb@gmail.com>  Sat, 07 Dec 2019 14:00:19 +0000
+ -- Thorsten H <spocondeb@gmail.com>  Wed, 24 Jul 2019 21:16:59 +0000
 
 spocon (0.16.10) bionic; urgency=medium
 
