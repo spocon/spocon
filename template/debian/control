@@ -8,6 +8,6 @@ Homepage: https://github.com/spocon
 
 Package: spocon
 Architecture: any
-Depends: libasound2, adduser, openjdk-11-jre
+Depends: libasound2, adduser, openjdk-11-jre | openjdk-8-jre
 Description: Spotify Connect for linux with librespot-java
  package installer for the project librespot-java
