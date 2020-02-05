@@ -5,13 +5,13 @@ Vagrant.configure(2) do |config|
     config.ssh.insert_key = true
     config.vm.define "spocon" do |system|
         system.vm.network "private_network", ip: "10.0.0.11"
-        system.vm.network "forwarded_port", guest: 22, host: 5555
+        system.vm.network "forwarded_port", guest: 22, host: 5556
         system.vm.box = "ubuntu/bionic64"
 
         system.vm.hostname = "spocon"
            system.vm.provider :virtualbox do |vb|
              vb.name = "spocon"
-             vb.gui = false
+             vb.gui = true
              vb.memory = 4096
              vb.cpus = 2
 
