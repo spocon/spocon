@@ -67,6 +67,8 @@ SpoCon should work out of the box and should be discoverable by Spotify Connect 
 your local network, however you can configure it by editing `/opt/spocon/config.toml`
 which passes arguments to [librespot-java](https://github.com/librespot-org/librespot-java).
 
+If you have a firewall, you need to open the UDP port `5355` for mDNS. Then specify some random port in `zeroconf.listenPort` and open that TCP port too.
+
 ```toml
 deviceName = "librespot-java" ### Device name ###
 deviceType = "COMPUTER" ### Device type (COMPUTER, TABLET, SMARTPHONE, SPEAKER, TV, AVR, STB, AUDIO_DONGLE, GAME_CONSOLE, CAST_VIDEO, CAST_AUDIO, AUTOMOBILE, WEARABLE, UNKNOWN_SPOTIFY, CAR_THING, UNKNOWN) ###
