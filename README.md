@@ -10,24 +10,23 @@ all three revisions of the Pi, immediately after installation.
 
 ## Download Latest Version
 
-### SpoCon releases for Ubuntu and Debian on [Launchpad](https://launchpad.net/~spocon/+archive/ubuntu/spocon)
-```
-sudo add-apt-repository ppa:spocon/spocon
-sudo apt-get -y update
-sudo apt-get install spocon 
-```
 
-### Raspbian releases 
 
-Luckily Launchpad is also supporting armhf versions , these are especially build for distributions like Raspberian 
-
-### Easy Installation
+### Raspbian Installation
 
 This command downloads and installs the Debian package and adds its apt repository, which ensures you'll always be up to date with upstream changes.
 ```
 curl -sL https://spocon.github.io/spocon/install.sh | sh
 ```
 That's it! Plug a speaker into your Pi on your local network, select the device in Spotify et voilà!
+
+
+### Ubuntu and Debian Installation
+```
+sudo add-apt-repository ppa:spocon/spocon
+sudo apt-get -y update
+sudo apt-get install spocon 
+```
 
 ### Hard installation
 
