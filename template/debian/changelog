@@ -1,3 +1,10 @@
+spocon (1.5.1) bionic; urgency=medium
+
+  * Update to 1.5.1, for more information please see
+    https://github.com/spocon/spocon
+
+ -- Thorsten H <spocondeb@gmail.com>  Sat, 01 Aug 2020 06:15:53 +0000
+
 spocon (1.5.0) bionic; urgency=medium
 
   * Update to 1.5.0, for more information please see
