@@ -139,7 +139,9 @@ Have you tried turning the volume up using the command `alsamixer`?
 
 > *My Raspberry Pi does not use my USB sound card!*
 
-Try to replace the following in the file `/usr/share/alsa/alsa.conf`:
+Check with `aplay -l` as which card your USB device is listed. Let's
+say it is "card 1", so try to replace the following in the 
+file `/usr/share/alsa/alsa.conf`:
 
 ```
 defaults.ctl.card 0
