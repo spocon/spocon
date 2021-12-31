@@ -1,0 +1,39 @@
+deviceName = "SpoCon-Spotify" ### Device name ###
+deviceType = "COMPUTER" ### Device type (COMPUTER, TABLET, SMARTPHONE, SPEAKER, TV, AVR, STB, AUDIO_DONGLE, GAME_CONSOLE, CAST_VIDEO, CAST_AUDIO, AUTOMOBILE, WEARABLE, UNKNOWN_SPOTIFY, CAR_THING, UNKNOWN) ###
+preferredLocale = "en" ### Preferred locale ###
+
+[auth] ### Authentication ###
+strategy = "ZEROCONF" # Strategy (USER_PASS, ZEROCONF, BLOB, FACEBOOK)
+username = "" # Spotify username (BLOB, USER_PASS only)
+password = "" # Spotify password (USER_PASS only)
+blob = "" # Spotify authentication blob (BLOB only)
+
+[zeroconf] ### Zeroconf ###
+listenPort = 9993 # Listen on this port (`-1` for random)
+listenAll = true # Listen on all interfaces (overrides `zeroconf.interfaces`)
+interfaces = "" # Listen on these interfaces (comma separated list of names)
+
+[cache] ### Cache ###
+enabled = true # Cache enabled
+dir = "./cache/"
+doCleanUp = true
+
+[preload] ### Preload ###
+enabled = true # Preload enabled
+
+[time] ### Time correction ###
+synchronizationMethod = "NTP" # Time synchronization method (NTP, PING, MELODY, MANUAL)
+manualCorrection = 0 # Manual time correction in millis
+
+[player] ### Player ###
+autoplayEnabled = true # Autoplay similar songs when your music ends
+preferredAudioQuality = "VORBIS_160" # Preferred audio quality (VORBIS_96, VORBIS_160, VORBIS_320)
+enableNormalisation = true # Whether to apply the Spotify loudness normalisation
+normalisationPregain = 0.0 # Normalisation pregain
+initialVolume = 65536 # Initial volume (0-65536)
+logAvailableMixers = true # Log available mixers
+mixerSearchKeywords = "" # Mixer/backend search keywords (semicolon separated)
+crossfadeDuration = 0 # Crossfade overlap time (in milliseconds)
+output = "MIXER" # Audio output device (MIXER, PIPE, STDOUT)
+releaseLineDelay = 20 # Release mixer line after set delay (in seconds)
+pipe = "" # Output raw (signed) PCM to this file (`player.output` must be PIPE)
