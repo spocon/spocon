@@ -1,0 +1,32 @@
+
+- name: Create tmp folder
+  file:
+    path: "{{ tmpFolder }}"
+    state: directory
+
+- name: Copy necessary files to {{ tmpFolder }}
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'Dockerfile', dest: '{{ tmpFolder }}' }
+    - { src: 'config.toml', dest: '{{ tmpFolder }}' }
+
+- name: Building Docker Container
+  shell: "/usr/bin/docker build -t \"spocon/spocon:{{ spocon_version }}\" . "
+  args:
+    chdir: "{{ tmpFolder }}"
+  register: result_docker
+
+- debug:
+    var: result_docker.stdout_lines
+
+- name: Login to docker
+  shell: "docker login -u spocon -p {{ secret.dockerhubpass }}"
+
+- name: "Docker upload image spocon/spocon:{{ spocon_version }}"
+  shell: "docker push spocon/spocon:{{ spocon_version }}"
+  register: upload_info
+
+- debug:
+    var: upload_info.stdout_lines

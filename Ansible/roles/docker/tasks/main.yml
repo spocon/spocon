@@ -1,0 +1,13 @@
+
+- name: Set facts
+  set_fact:
+    tmpFolder: /tmp/spocon_docker
+
+- name: reading /home/vagrant/config/secret.yml
+  include_vars:
+    file: /home/vagrant/config/secret.yml
+    name: secret
+
+- name: Build docker image
+  import_tasks: build.yml
+  delegate_to: 127.0.0.1
