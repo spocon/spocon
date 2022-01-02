@@ -8,7 +8,7 @@ which thinly wraps the awesome
 [Gianluca Altomani](https://github.com/devgianlu) and others. It works out of the box on
 all three revisions of the Pi, immediately after installation.
 
-NEW: If you are interested in a Spocon Docker version, please see here:  [Spocon Docker](https://hub.docker.com/repository/docker/spocon/spocon)
+NEW: Spocon supports now also Docker, instructions are here:  [Spocon Docker](https://hub.docker.com/repository/docker/spocon/spocon)
 
 ## Download Latest Version
 
