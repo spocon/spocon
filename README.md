@@ -43,6 +43,14 @@ echo 'deb http://ppa.launchpad.net/spocon/spocon/ubuntu bionic main' | sudo tee 
 sudo apt-get update
 sudo apt-get -y install spocon
 ```
+
+#### Alternative key import
+
+Some people report problems importing the key for our repository. If the above command fails due to the keyserver, you can try the following beforehand:
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 7DBE8BF06EA39B78
+```
+
 ### Requirements
 
 You'll need a [Spotify Premium](https://www.spotify.com/premium/) account in order
