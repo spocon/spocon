@@ -1,3 +1,11 @@
+spocon (1.6.3) bionic; urgency=medium
+
+  * Update to 1.6.3, for more information please see
+    https://github.com/spocon/spocon
+
+ -- Thorsten H <spocondeb@gmail.com>  Mon, 10 Jul 2023 08:45:55 +0000
+
+
 spocon (1.6.2) bionic; urgency=medium
 
   * Update to 1.6.2, for more information please see
